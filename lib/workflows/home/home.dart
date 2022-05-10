@@ -1,4 +1,3 @@
-import 'package:expense_manager/commons/permission_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
@@ -22,13 +21,11 @@ class _HomeStateWidget extends State<Home> {
   }
 
   Future<void> getAllMessages(int count) async {
-    if (await checkSmsPermission()) {
-      List<SmsMessage> messages =
-          await query.querySms(kinds: [SmsQueryKind.inbox], count: count);
-      setState(() {
-        allMessages = messages;
-      });
-    }
+    List<SmsMessage> messages =
+        await query.querySms(kinds: [SmsQueryKind.inbox], count: count);
+    setState(() {
+      allMessages = messages;
+    });
   }
 
   Future<void> checkMessage() async {
